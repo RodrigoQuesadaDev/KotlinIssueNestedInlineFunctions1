@@ -1,0 +1,33 @@
+buildscript {
+    ext.kotlin_version = '0.14.449'
+    //ext.kotlin_version = '0.1-SNAPSHOT'
+    repositories {
+        mavenCentral()
+        maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+apply plugin: 'application'
+apply plugin: 'kotlin'
+
+mainClassName = 'MainKt'
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
